@@ -1,0 +1,4 @@
+repository "CorePlayer/CorePlayer@18968403682248@cloud"
+  path "/"
+    br "/main"
+    co "/main"
