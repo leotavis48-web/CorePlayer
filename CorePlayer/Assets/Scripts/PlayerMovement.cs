@@ -33,20 +33,6 @@ public class PlayerMovement : MonoBehaviour
               )
             : Vector2.zero;
 
-        // 👉 CAMERA-BASED movement
-        Vector3 forward = Camera.main.transform.forward;
-        Vector3 right = Camera.main.transform.right;
-
-        forward.y = 0;
-        right.y = 0;
-        forward.Normalize();
-        right.Normalize();
-
-        bool isRunning = Keyboard.current.leftShiftKey.isPressed;
-        float speed = canMove ? (isRunning ? runSpeed : walkSpeed) : 0;
-
-        Vector3 move = (forward * moveInput.y + right * moveInput.x) * speed;
-
         // Keep Y velocity
         float yVelocity = moveDirection.y;
         moveDirection = move;
@@ -62,20 +48,6 @@ public class PlayerMovement : MonoBehaviour
         if (!characterController.isGrounded)
         {
             moveDirection.y -= gravity * Time.deltaTime;
-        }
-
-        // Crouch
-        if (Keyboard.current.rKey.isPressed && canMove)
-        {
-            characterController.height = crouchHeight;
-            walkSpeed = crouchSpeed;
-            runSpeed = crouchSpeed;
-        }
-        else
-        {
-            characterController.height = defaultHeight;
-            walkSpeed = 6f;
-            runSpeed = 12f;
         }
 
         // Rotate player toward movement
