@@ -36,7 +36,7 @@ void Update()
     // Convert to 3D movements
     Vector3 move = (transform.right * moveInput.x + transform.forward * moveInput.y).normalized;
 
-    // Choose speed
+    // Walking and Sprint Speed
     float speed = Keyboard.current.leftShiftKey.isPressed ? runSpeed : walkSpeed;
 
     // Preserve Y velocity
